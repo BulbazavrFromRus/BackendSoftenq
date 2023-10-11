@@ -1,0 +1,9 @@
+{
+  "development": {
+    "username": "bulbazavr",
+    "password": "OPG2003OPG555",
+    "database": "dbtest",
+    "host": "5432",
+    "dialect": "postgres"
+  }
+}

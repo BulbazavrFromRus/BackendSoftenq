@@ -1,0 +1,23 @@
+{
+  "development": {
+    "username": "bulbazavr",
+    "password": "OPG2003OPG555",
+    "database": "dbtest",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "test": {
+    "username": "bulbazavr",
+    "password": "OPG2003OPG555",
+    "database": "dbtest",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  },
+  "production": {
+    "username": "bulbazavr",
+    "password": "OPG2003OPG555",
+    "database": "dbtest",
+    "host": "127.0.0.1",
+    "dialect": "postgres"
+  }
+}
