@@ -14,7 +14,7 @@ module.exports = (sequelize, DataTypes) => {
           {
             through:'UserRoles',
             foreignKey: 'userId',
-            as: 'role'
+            as: 'roles'
           }
           )
     }
