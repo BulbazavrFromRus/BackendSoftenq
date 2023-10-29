@@ -8,6 +8,8 @@ const app = express();
 
 app.use(cors());
 
+
+
 app.use(bodyParser.json());
 app.use(
     bodyParser.urlencoded({
@@ -70,6 +72,8 @@ Role.bulkCreate([
 
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
+// Установка максимального количества обработчиков событий для объектов типа TLSSocket
+require('events').EventEmitter.defaultMaxListeners = 20; // Здесь можно установить нужное количество
 
 /*onst express = require('express');
 const cors = require('cors');
