@@ -10,9 +10,9 @@ var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
     // Save User to Database
-    console.log("")
+    /*console.log("")
     console.log(req.body)
-    console.log("")
+    console.log("")*/
     User.create({
         name: req.body.name,
         email: req.body.email,
@@ -44,7 +44,8 @@ exports.signup = (req, res) => {
         });
 };
 
-exports.signin = (req, res) => {
+exports.signin = (req, res) =>
+{
     User.findOne({
         where: {
             name: req.body.name
@@ -67,6 +68,7 @@ exports.signin = (req, res) => {
                 });
             }
 
+            //creating jwt token
             const token = jwt.sign({ id: user.id },
                 config.secret,
                 {
