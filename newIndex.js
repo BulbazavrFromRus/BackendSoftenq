@@ -13,18 +13,28 @@ app.use(cors());
 const server = http.createServer(app)
 
 const io = new Server(server, {
-    cors:{
-        origin:"http://localhost:3000",
+    cors: {
+        origin: ["http://localhost:3000", "http://127.0.0.1:3000"], // Добавьте все допустимые домены
         methods: ["GET", "POST"],
-    }
+    },
 })
 
 io.on("connection", (socket)=>{
+    if(socket.connected){
+        console.log("Everything is good")
+    }
+    else
+    {
+        console.log("Something wend wrong")
+    }
+
+
     console.log(`User connected: ${socket.id}`)
 
-    socket.on("send_message", (data)=>{
-         socket.broadcast.emit("received message", data)
-    })
+    socket.on("send_message", (data) => {
+        socket.broadcast.emit("received message", data);
+    });
+
 })
 
 //then create out "connection" and we mentioned other port
@@ -60,7 +70,7 @@ const initApp = async () => {
     await db.authenticate();
     console.log("Connection has been established successfully.");
 
-    const port = 8000;
+    const port = 8002;
     app.listen(port, () => {
       console.log('Frontend server is running on port');
     })
