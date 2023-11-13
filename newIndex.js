@@ -5,10 +5,34 @@ const httpProxy = require('http-proxy');
 const proxy = httpProxy.createProxyServer();
 const {sequelize} =require('sequelize');
 const app = express();
-
-const WebSocket = require('ws')
+const {Server} = require('socket.io')
+const http = require("http");
 
 app.use(cors());
+
+const server = http.createServer(app)
+
+const io = new Server(server, {
+    cors:{
+        origin:"http://localhost:3000",
+        methods: ["GET", "POST"],
+    }
+})
+
+io.on("connection", (socket)=>{
+    console.log(`User connected: ${socket.id}`)
+
+    socket.on("send_message", (data)=>{
+         socket.broadcast.emit("received message", data)
+    })
+})
+
+//then create out "connection" and we mentioned other port
+server.listen(8001, ()=>{
+    console.log("SERVER IS RUNNING")
+})
+
+
 
 
 
@@ -22,16 +46,13 @@ app.use(
 
 const db  = require("./sequelize_config.js");
 
+
 app.get("/api",(req,res)=>{
   res.send("Hell, its working...");
   
 });
 
-
-
 app.listen(3000, () => console.log('App is running!'));
-
-
 
 
 const initApp = async () => {
