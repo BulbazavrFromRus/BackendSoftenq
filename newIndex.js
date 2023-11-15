@@ -71,13 +71,16 @@ app.use(
 
 const db  = require("./sequelize_config.js");
 
-
 app.get("/api",(req,res)=>{
   res.send("Hell, its working...");
   
 });
 
+
+
 app.listen(3000, () => console.log('App is running!'));
+
+
 
 
 const initApp = async () => {
@@ -87,7 +90,7 @@ const initApp = async () => {
 
     const port = 8002;
     app.listen(port, () => {
-      console.log('Frontend server is running on port:', port);
+      console.log('Frontend server is running on port');
     })
 } catch (error) {
     console.error("Unable to connect to the database:", error.original);
