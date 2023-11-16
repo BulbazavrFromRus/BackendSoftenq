@@ -14,7 +14,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:3000", "http://127.0.0.1:3000"], // Добавьте все допустимые домены
+        origin: ["http://localhost:3000", "http://localhost:8001", "http://localhost:8000", "http://0.0.0.0:3000"], // Добавьте все допустимые домены
         methods: ["GET", "POST"],
     },
 })
@@ -33,6 +33,7 @@ io.on("connection", (socket)=>{
 
     socket.on("send_message", (data) => {
         socket.broadcast.emit("received message", data);
+        console.log("message recievede");
     });
 
 })
