@@ -32,9 +32,11 @@ io.on("connection", (socket)=>{
     console.log(`User connected: ${socket.id}`)
 
     socket.on("send_message", (data) => {
-        socket.broadcast.emit("received message", data);
-        console.log("message recievede");
+        socket.broadcast.emit("receive_message", data);
+        console.log(data)
     });
+
+
 
 })
 
@@ -73,7 +75,7 @@ const initApp = async () => {
 
     const port = 8002;
     app.listen(port, () => {
-      console.log('Frontend server is running on port');
+      console.log('Frontend server is running on port:', port);
     })
 } catch (error) {
     console.error("Unable to connect to the database:", error.original);
