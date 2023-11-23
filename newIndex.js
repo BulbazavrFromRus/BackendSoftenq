@@ -14,7 +14,7 @@ const server = http.createServer(app)
 
 const io = new Server(server, {
     cors: {
-        origin: ["http://localhost:3000", "http://localhost:8001", "http://localhost:8000", "http://0.0.0.0:3000"], // Добавьте все допустимые домены
+        origin: ["http://localhost:3000", "http://localhost:8001", "http://localhost:8000", "http://0.0.0.0:3000", "http://0.0.0.0:8000"], // Добавьте все допустимые домены
         methods: ["GET", "POST"],
     },
 })
@@ -60,9 +60,9 @@ app.use(
 const db  = require("./sequelize_config.js");
 
 
-app.get("/api",(req,res)=>{
+app.get("/zopa",(req,res)=>{
   res.send("Hell, its working...");
-  
+
 });
 
 app.listen(3000, () => console.log('App is running!'));
