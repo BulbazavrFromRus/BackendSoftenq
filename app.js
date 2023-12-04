@@ -1,3 +1,4 @@
+/*
 const express = require('express');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
@@ -50,4 +51,4 @@ res.status(500).json({ message: 'Ошибка сервера' });
 
 app.listen(3000, () => {
 console.log('Сервер запущен на порту 3000');
-});
+});*/

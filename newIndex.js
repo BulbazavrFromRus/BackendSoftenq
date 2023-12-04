@@ -19,6 +19,7 @@ const io = new Server(server, {
     },
 })
 
+const userSockets = {};
 io.on("connection", (socket)=>{
     if(socket.connected){
         console.log("Everything is good")
@@ -29,12 +30,23 @@ io.on("connection", (socket)=>{
     }
 
 
-    console.log(`User connected: ${socket.id}`)
+  console.log(`User connected: ${socket.id}`)
+
 
     socket.on("send_message", (data) => {
-        socket.broadcast.emit("receive_message", data);
-        console.log(data)
+        const userId = userSockets[socket.id] || socket.id; // Используем сохраненный идентификатор или socket.id
+        const username = data.username || "Unknown User"; // Получаем имя пользователя из данных
+
+        const messageData = { text: data.text, sender: username }; // Используем имя пользователя вместо socket.id
+
+        socket.broadcast.emit("receive_message", messageData);
+        socket.emit("send_message", messageData); // Send the message back to the sender
+
+        if (!userSockets[socket.id]) {
+            userSockets[socket.id] = userId;
+        }
     });
+
 
 
 
